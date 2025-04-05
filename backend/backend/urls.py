@@ -17,8 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import health_check
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({"status": "Backend is live 🎉"})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('healthz', health_check),
+    path('', home),  # ✅ root URL
 ]
